@@ -476,9 +476,9 @@ Phalcon Version 0.8.0
       99%     14
      100%     23 (longest request)
 
-Graphs
+그래프
 ^^^^^^
-The first graph shows how many requests per second each framework was able to accept. The second shows the average time across all concurrent requests.
+첫 번째 그래프는 초당 각 프레임 워크가 얼마나 수용할 수 있는지에 대한 요청을 보여줍니다. 두 번째는 모든 동시 요청에 걸쳐 평균 시간을 보여줍니다.
 
 .. raw:: html
 
