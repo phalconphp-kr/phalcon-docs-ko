@@ -72,7 +72,7 @@ Phalcon 의 목표는 성능뿐만 아닙니다. 우리의 목표는 그것을 �
    api/index
    reference/license
 
-その他のフォーマット
+기타 포맷
 -------------
 
 * `PDF <http://media.readthedocs.org/pdf/phalcon-php-framework-documentation/latest/phalcon-php-framework-documentation.pdf>`_
