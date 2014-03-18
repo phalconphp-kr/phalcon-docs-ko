@@ -1,31 +1,27 @@
-Hello World ベンチマーク
+Hello World 벤치 마크
 =====================
-ベンチマークを実行した方法は？
+벤치 마크를 실행한 방법은?
 ----------------------------------
-We created a "Hello World" benchmark seeking to identify the smallest load overhead of each framework. Many
-people don't like this kind of benchmark because real-world applications require more complex features or
-structures. However, these tests identify the minimum time spent by each framework to perform a simple task.
-Such a task represents the mimimum requirement for every framework to process a single request.
+우리는 각 프레임 워크의 가장 작은 로드 오버 헤드를 확인 하고자하는 "Hello World" 벤치 마크를 만들었습니다. 많은 실제 응용 프로그램은 더 복잡한 기능을 필요로 하기 때문에 사람들은 이런 종류의 벤치 마크를 좋아하지 않습니다. 그러나, 이러한 테스트는 간단한 태스크를 수행하기 위해 각각의 프레임 워크에 의해 소요되는 최소 시간을 식별합니다. 이러한 작업은 하나의 요청을 처리 하기 위해 모든 프레임 워크의 최소 요구 사항을 나타냅니다.
 
-More specifically, the benchmark only measures the time it takes for a framework to start, run an action and
-free up resources at the end of the request. Any PHP application based on an MVC architecture will require
-this time. Due to the simplicity of the benchmark, we ensure that the time needed for a more complex
-request will be higher.
+보다 구체적으로, 벤치 마크는 프레임 워크가 시작하는 동작을 실행하고 요청이 끝날 때 리소스를 해제하는데까지 걸리는 시간을 측정합니다. MVC 아키텍처를 기반으로 모든 PHP 응용 프로그램이 필요합니다
+이 시간에 벤치 마크 의 단순성 , 우리는 시간이 좀 더 복잡한 필요한 보장
+요청이 더 높을 것이다 .
 
-A controller and a view have been created for each framework. The controller "say" and action "hello". The
-action only sends data to the view which displays it ("Hello!"). Using the "ab" benchmark tool we sent 2000
-requests using 10 concurrent connections to each framework.
+컨트롤러와 뷰는 각각의 프레임 워크로 생성되었습니다. 컨트롤러는 "say" 와 액션은 "hello".
+이 액션은 ("Hello!") 를 표시하는 뷰에 데이터를 전송합니다. 우리는 "ab" 벤치 마크 도구를 사용하여
+2000번을 보내며 각 프레임 워크에 10 개의 동시 연결을 사용하여 요청을 처리합니다.
 
-どのような測定値を記録しましたか？
+어떤 측정 값을 기록 했습니까?
 --------------------------------
-These were the measurements we record to identify the overall performance of each framework:
+우리는 각각의 프레임 워크의 전반적인 성능을 식별하는 아래와 같은 기록을 측정했습니다: 
 
-* Requests per second
-* Time across all concurrent requests
-* Number of included PHP files on a single request (measured using function get_included_files_.
-* Memory Usage per request (measured using function memory_get_usage_.
+* 초당 요청 
+* 모든 동시 요청 시간 
+* get_included_files_ 기능을 사용하는 단일 요청에 포함된 PHP 파일의 수
+* memory_get_usage_ 기능을 사용하는 요청에 따른 메모리 사용률
 
-比較対象のフレームワーク
+비교 대상 프레임 워크
 -----------------------
 * Yii_ (YII_DEBUG=false) (yii-1.1.13)
 * Symfony_ (2.0.11)
@@ -36,7 +32,7 @@ These were the measurements we record to identify the overall performance of eac
 * Laravel_ 3.2.5
 * CodeIgniter_ (2.1.0)
 
-結果
+결과
 -------
 Yii (YII_DEBUG=false) Version yii-1.1.13
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -600,9 +596,9 @@ The first graph shows how many requests per second each framework was able to ac
         <div id="mpr_div" style="width: 600px; height: 400px; position: relative; "><iframe name="Drawing_Frame_77939" id="Drawing_Frame_77939" width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div></div></div>
     </div>
 
-Conclusion
+결론
 ----------
-The compiled nature of Phalcon offers extraordinary performance that outperforms all other frameworks measured in these benchmarks.
+컴파일된 Phalcon 은 측정된 벤치 마크에서 모든 다른 프레임 워크를 능가하는 뛰어난 성능을 제공합니다.
 
 .. _get_included_files: http://www.php.net/manual/en/function.get-included-files.php
 .. _memory_get_usage: http://php.net/manual/en/function.memory-get-usage.php
