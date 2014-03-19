@@ -1,74 +1,68 @@
-モチベーション
+동기 부여
 ==============
-現在、多くのPHPフレームワークがありますが、その中でPhalconのようなものはまだありません。
+현재 많은 PHP는 프레임 워크가 있지만, 그 중에서도 Phalcon 같은 것은 아직 없었습니다.
 
-ほとんどのプログラマーは、フレームワークを使うことを好みます。第一の理由としては、既にテストされた多くの機能があるからです。
-それにより、「DRY」なコードを担保できます。
-しかし、フレームワークは、アプリケーションからのリクエストごとに解釈＆実行される数百行のコードを含む多くのファイルを必要とします。
-また、オブジェクト指向のフレームワークの場合、複雑なアプリケーションの実行速度を遅くさせてしまうという短所があります。
-全ての操作がアプリケーションの遅さ、さらにはUXに悪い影響を与えてしまいます。
+대부분의 프로그래머는 프레임 워크를 사용하는 것을 좋아합니다. 첫 번째 이유는 이미 테스트 된 많은 기능이 있기 때문입니다. 
+그러면 "DRY" 코드를 담보 할 수 있습니다.
+하지만 프레임 워크는 어플리케이션의 요청에 따라 해석 및 실행 되는 수백 줄의 코드를 포함하여 많은 파일이 필요 합니다.
+또한 객체 지향 프레임 워크의 경우 복잡한 어플리케이션의 실행 속도를 느리게하는 단점이 있습니다.
+어플리케이션의 모든 조작이 느리면 심지어 UX 에도 나쁜 영향을 주어 버립니다.
 
-質問
+질문
 ------------
-ほとんどが強みである堅牢なフレームワークがなぜないのか？
+모든면에서 장점인 강력한 프레임 워크는 왜 없는가?
 
-これはPhalconが生まれた理由です！
+이것은 Phalcon 가 태어난 이유입니다!
 
-ここ数ヶ月間、大々的にPHPの振る舞いや有効な最適化などについて研究してきました。
-この調査結果を通して、不要な検証を除いたり、コードをコンパクトにしたり、パフォーマンスを最適化したりして、Phalconによってパフォーマンスが最大化できるような
-低レベルでのソリューションを構築してきました。
+지난 몇 달 동안 대대적으로 PHP 작동이나 효과적인 최적화등을 연구하여 왔습니다.
+이 조사 결과를 통해 불필요한 검사를 제외하거나 코드를 컴팩트하게 하고, 성능을 최적화하고 하여 Phalcon 성능이 극대화 할 수 있는 낮은 수준의 솔루션을 구축하여 왔습니다.
 
-なぜ?
+왜?
 ----
-* フレームワークを使うことは、PHPの開発者の中で一般的になってきました
-* フレームワークを使うことで、プロジェクトを簡単にメンテナンスできたり、少ないコードでより速く動作できるようにします
-* 我々はPHPを愛しており、大規模で壮大なプロジェクトを作れることを考えています
+* 프레임 워크를 사용하는 것은 PHP 개발자에게서 인기를 끌고 있습니다.
+* 프레임 워크를 사용하여 프로젝트를 손쉽게 관리 할 수 있고, 적은 코드로 더 빨리 동작 할 수 있도록 합니다.
+* 우리는 PHP를 사랑하며 크고 훌륭한 프로젝트를 만들 것을 믿습니다.
 
-PHPの内部での動作は?
+PHP 내부에서의 동작은?
 ----------------------
-* PHP has dynamic and weak variable types. Every time a binary operation is made (ex. 2 + "2"), PHP checks the operand types to perform potential conversions
-* PHP is interpreted and not compiled. The major disadvantage is performance loss
-* Every time a script is requested it must be first interpreted
-* If a bytecode cache (like APC) isn't used, syntax checking is performed every time for every file in the request
+* PHP 는 동적인 약한 변수의 유형을 가집니다. 그래서 매회 이진 동작이 이루어지고 (예 2 + "2"), PHP 는 잠재적 변환을 수행할 피연산자 타입을 검사합니다.
+* PHP 는 해석되고 컴파일되지 않습니다. 가장 큰 단점이 성능 손실입니다.
+* 스크립트가 요청 될 때마다, 먼저 해석 되어야 합니다.
+* (APC 같은) 바이트코드 캐시가 사용되지 않는 경우에는 문법 체크는 요청마다 모든 파일에 대해 매번 수행합니다.
 
-従来のPHPフレームワークはどう動作するか?
+기존 의 PHP 프레임 워크는 어떻게 작동합니까?
 ---------------------------------------
-* Many files with classes and functions are read on every request made. Disk reading is expensive in terms of performance, especially when the file structure includes deep folders
-* Modern frameworks use lazy loading (autoload) to increase performance (for load and execute only the code needed)
-* Some of these classes contain methods that aren't used in every request but they're loaded always consuming memory
-* Continuous loading or interpreting is expensive and impacts performance
-* The framework code does not change very often, therefore an application needs to load and interpret it every time a request is made
+* 클래스와 기능을 가진 대부분의 파일이 모든 요청마다 읽습니다. 특히 파일 구조가 깊은 폴더를 포함한 디스크 읽기는 성능의 측면에서 비쌉니다.
+* 현대 프레임 워크는 (부하에 필요한 코드만 실행) 성능을 향상시키기 위해 지연로드 (자동로드)를 사용합니다.
+* 이러한 클래스 중 일부는 모든 요청에 사용되지 않지만, 항상 메모리에 적재하여 자원을 소비합니다.
+* 연속적으로 로드하거나 해석하는 것은 비싸고 성능에 영향을 끼칩니다.
+* 프레임 워크 코드는 자주 변경되지 않으며, 따라서 애플리케이션은 요청이 이루어질 때마다 로딩하고 그것을 해석 할 필요가 없습니다.
 
-PHPのC拡張はどう動作するか?
+PHP는 C 확장 은 어떻게 작동합니까?
 --------------------------------
-* C extensions are loaded together with PHP one time on the web server's daemon start process
-* Classes and functions provided by the extension are ready to use for any application
-* The code isn't interpreted because is already compiled to a specific platform and processor
+* C 확장은 한 시간은 웹 서버의 데몬 시작 프로세스에 PHP 와 함께 로드됩니다.
+* 확장에서 제공하는 클래스와 함수는 모든 어플리케이션 에 사용할 준비가 됩니다.
+* 이미 특정 플랫폼과 프로세서에 컴파일되어 코드가 해석되지 않습니다.
 
-Palconはどう動作するか?
+Palcon 은 어떻게 작동합니까?
 ----------------------
-* Components are loosely coupled. With Phalcon, nothing is imposed on you: you're free to use the full framework, or just some parts of it as a glue components.
-* Low-level optimizations provides the lowest overhead for MVC-based applications
-* Interact with databases with maximum performance by using a C-language ORM for PHP
-* Phalcon directly accesses internal PHP structures optimizing execution in that way as well
+* 구성 요소는 느슨하게 연결되어있습니다. Phalcon 은 아무 것도 당신에 강제하지 않습니다: 당신은 구성 요소로 전체 프레임 워크를 사용하거나 또는 단지 일부만 사용하여도 자유입니다.
+* 낮은 수준의 최적화는 MVC 기반 어플리케이션에 대한 낮은 오버 헤드를 제공합니다.
+* PHP 를 위한 C언어 ORM을 사용하여 최대의 성능과 데이터베이스와의 상호 작용을 합니다.
+* Phalcon 은 실행을 최적화하는 내부 PHP 구조에 직접 접근합니다.
 
-なぜPhalconを必要とするのか?
+왜 Phalcon 을 필요로 하는가?
 ----------------------
-Each application requirements and tasks are different than another's. Some for instance are designed to do a set
-of tasks and generate content that rarely changes. These applications can be created with any programming language or
-framework. Using a front-end cache, usually makes such an application, no matter how poorly designed or slow it might be,
-perform very fast.
+각 어플리케이션의 요구 사항 및 작업은 사람에 따라 다릅니다. 예를 들어 일부는 일련의 작업을 수행하도록 거의 변경되지 않는 컨텐츠를 생성하게 설계합니다. 이러한 어플리케이션은 어떤 프로그래밍 언어나 프레임워크로도 만들 수 있습니다.
+프런트 엔드 캐시를 사용하면 보통 아무리 나쁜 설계나 느리게 실행되도 매우 빠르게 할 수 있습니다.
 
-Other applications generate content almost immediately that changes from request to request. In this case, PHP is used
-to address all requests and generate the content. These applications can be APIs, discussion forums with high traffic loads,
-blogs with a high number of comments and contributors, statistic applications, admin dashboards, enterprise resource
-planners (ERP), business-intelligence software dealing with real time data and more.
+다른 어플리케이션은 요청에 대한 변경 콘텐츠를 거의 즉시 생성합니다. 이 경우 PHP 가 사용 모든 요청을 해결하고 콘텐츠를 생성 할 수 있습니다. 이러한 어플리케이션은 API는 트래픽로드가 높은 토론 포럼, 통계 프로그램, 관리 대시 보드, 전사적 자원과 블로그
+실시간 데이터 등을 처리 계획(ERP), 비즈니스 인텔리전스 소프트웨어가 될수 있습니다.
 
-An application will be as slow as its slowest component/process. Phalcon offers a very fast yet feature rich framework
-that allows developers to concentrate on making their applications/code faster. Following proper coding processes,
-Phalcon can deliver a lot more functionality/requests with less memory consumption and processing cycles.
+어플리케이션이 가장 느린 구성 요소/프로세스로 될 것입니다. Phalcon 은 매우 빠르지만 기능이 풍부한 프레임 워크를 제공합니다.
+개발자는 자신의 어플리케이션/코드를 빠르게 만들기에만 집중할 수 있습니다. 
+적절한 코딩 과정에 이어 Phalcon은 적은 메모리 소비와 개발 주기에 더 많은 기능/요청을 해결할 수 있습니다.
 
-結論
+결론
 ----------
-PhalconはPHPの最速フレームワークです。「重要なのはパフォーマンスである」という指針に基づいて実装されたフレームワークであり、
-これを使ったアプリケーションの構築は簡単で堅牢な方法でできます！ぜひ楽しんでください！
+Phalcon 은 PHP 의 빠른 프레임 워크입니다. "중요한 것은 성능이다" 라는 지침에 따라 구현된 프레임 워크이며, 이것을 사용한 어플리케이션의 구축은 간단하고 강력한 방법으로 할 수 있습니다! 반드시 사용해주세요!

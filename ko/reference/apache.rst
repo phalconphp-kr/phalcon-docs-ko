@@ -1,12 +1,10 @@
-Apache インストール ノート
-=========================
-Apache_ は多くのプラットフォームで利用可能な、人気のあるWebサーバーです。
+Apache 설치 노트 
+========================= 
+Apache_ 는 많은 플랫폼에서 사용 가능한 인기있는 Web 서버입니다. 
 
-PhalconのためのApacheの設定
-------------------------------
-次の設定は、 PhalconをApacheで使う際の設定例です。ここでは主に、使いやすいURLと :doc:`router component <routing>`. を
-使用できるようにmod-rewriteモジュールを設定する方法についてフォーカスしています。
-一般的にアプリケーションは下記のような構造になります。
+Phalcon을 위한 Apache 구성 
+------------------------------ 
+다음 설정은 Phalcon과 Apache 를 사용할 때의 설정 예입니다. 여기에서는 주로 사용하기 쉬운 URL과 :doc:`router component <routing>`. 을 사용할 수 있도록 mod-rewrite 모듈을 설정하는 방법에 대해 초점을 맞추고 있습니다. 일반적으로 애플리케이션은 다음과 같은 구조입니다.
 
 .. code-block:: php
 
@@ -21,11 +19,9 @@ PhalconのためのApacheの設定
         js/
         index.php
 
-メインドキュメントルート下のディレクトリ
+기본 문서 루트 아래의 디렉토리 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-これは最も一般的なケースで、アプリケーションはドキュメントルート下の任意のディレクトリにインストールされています。
-このケースでは、2つの .htaccess ファイルを使います。1つめはアプリケーションコードを隠すためにすべてのリクエストを
-アプリケーションのドキュメントルート (public/) へリダイレクトします。
+이것은 가장 일반적인 경우 응용 프로그램은 문서 루트 아래의 모든 디렉토리에 설치되어 있습니다. 이 경우 두개의 .htaccess 파일을 사용합니다. 첫 번째는 응용 프로그램 코드를 숨기기 위해 모든 요청을 응용 프로그램의 문서 루트 (public/)로 리디렉션합니다.
 
 .. code-block:: apacheconf
 
@@ -37,7 +33,7 @@ PhalconのためのApacheの設定
         RewriteRule  (.*) public/$1 [L]
     </IfModule>
 
-2つめの .htaccess ファイルは、public/ ディレクトリに配置し、すべてのURIを public/index.php ファイルにリライトします。
+두 번째 .htaccess 파일은 public/ 디렉토리에 배치하고 모든 URI를 public/index.php 파일에 다시 작성합니다.
 
 .. code-block:: apacheconf
 
@@ -50,7 +46,7 @@ PhalconのためのApacheの設定
         RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
     </IfModule>
 
-もし .htaccessファイルを使用したくない場合は、これらの設定を Apacheのメインの設定ファイルに移動させることができます。
+만약 .htaccess 파일을 사용하고 싶지 않으면 이 설정을 Apache의 기본 설정 파일로 이동시킬 수 있습니다.
 
 .. code-block:: apacheconf
 
@@ -71,9 +67,9 @@ PhalconのためのApacheの設定
 
     </IfModule>
 
-バーチャルホスト
+가상 호스트 
 ^^^^^^^^^^^^^
-そしてこの2つめの設定では、Virtual Host 内に Phalconアプリケーションをインストールすることができます。
+그리고 이 두 번째 설정은 Virtual Host에 Phalcon 응용 프로그램을 설치할 수 있습니다.
 
 .. code-block:: apacheconf
 

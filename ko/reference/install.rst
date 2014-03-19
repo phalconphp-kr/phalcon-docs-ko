@@ -1,29 +1,29 @@
-インストール
+설치
 ============
-PHP拡張モジュールは、従来のPHPベースのライブラリやフレームワークとは若干異なるインストール方法をとります。
-あなたのシステム向けのバイナリパッケージをダウンロードするか、ソースコードからビルドする２つの方法があります。
+PHP 확장 모듈은 기존의 PHP 기반 라이브러리와 프레임 워크와는 약간 다른 설치 방법을 취합니다.
+당신의 시스템용 바이너리 패키지를 다운로드하거나 소스 코드에서 빌드하는 두 가지 방법이 있습니다.
 
 .. highlights::
-    PhalconはPHP 5.3.1以降でコンパイルできますが、古いPHPはメモリリークを引き起こすバグがあるため、少なくとも PHP 5.3.11以降を使用することを推奨しています。
+    Phalcon 은 PHP 5.3.1 이상으로 컴파일 할 수 있지만 오래된 PHP는 메모리 누수를 일으키는 버그가 있기 때문에 적어도 PHP 5.3.11 이상을 사용하는 것을 권장하고 있습니다.
 
 .. highlights::
-   PHP 5.3.9 以前のものには、いくつかのセキュリティ的な欠陥があり、商用環境のWEBサイトでの使用は推奨しておりません。 `詳細はこちら <http://www.infoworld.com/d/security/php-539-fixes-hash-collision-dos-vulnerability-183947>`_
+   PHP 5.3.9 이전에는 몇 가지 보안적인 결함이 있기에 상용 환경의 WEB 사이트에서의 사용은 권장하고 있지 않습니다. `자세한 것은 이쪽 <http://www.infoworld.com/d/security/php-539-fixes-hash-collision-dos-vulnerability-183947>`_
 
 Windows
 -------
-Windows上でPhalconを使用するには、DLLライブラリをダウンロードします。そして php.iniを編集し、最後に次の行を追加します。
+Windows에서 Phalcon 을 사용하려면 DLL 라이브러리를 다운로드합니다. 그리고 php.ini 파일을 편집한 다음에 다음 줄을 추가합니다.
 
-    extension=php_phalcon.dll
+    extension=php_phalcon.dll
 
-最後にWEBサーバーを再起動します。
+마지막으로 WEB 서버를 다시 시작합니다.
 
-次のスクリーンキャストは、Windows上にPhalconをインストールするステップバイステップガイドです。
+다음 스크린 캐스트는 Windows에 Phalcon 를 설치하는 단계별 가이드 입니다.
 
 .. raw:: html
 
     <div align="center"><iframe src="http://player.vimeo.com/video/40265988" width="500" height="266" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
 
-関連ガイド
+관련 가이드
 ^^^^^^^^^^^^^^
 .. toctree::
     :maxdepth: 1
@@ -33,17 +33,17 @@ Windows上でPhalconを使用するには、DLLライブラリをダウンロー
 
 Linux/Solaris/Mac
 -----------------
-Linux/Solaris/Mac の環境では、簡単に拡張モジュールをソースコードからコンパイルしてインストールすることができます。
+Linux/Solaris/Mac 환경에서는 쉽게 확장 모듈을 소스 코드에서 컴파일하여 설치할 수 있습니다.
 
-必要条件
+요구 사항
 ^^^^^^^^^^^^
-必要となるパッケージは次の通りです：
+필요한 패키지는 다음과 같습니다:
 
 * PHP 5.3.x/5.4.x/5.5.x development resources
 * GCC compiler (Linux/Solaris) or Xcode (Mac)
 * Git (if not already installed in your system - unless you download the package from GitHub and upload it on your server via FTP/SFTP)
 
-一般的なプラットフォームにおける具体的なパッケージ:
+일반적인 플랫폼의 구체적인 패키지:
 
 .. code-block:: bash
 
@@ -63,9 +63,9 @@ Linux/Solaris/Mac の環境では、簡単に拡張モジュールをソース�
     pkg install gcc-45
     pkg install php-53 apache-php53
 
-コンパイル
+컴파일
 ^^^^^^^^^^^
-拡張モジュールの作成：
+확장 모듈 만들기:
 
 .. code-block:: bash
 
@@ -73,15 +73,15 @@ Linux/Solaris/Mac の環境では、簡単に拡張モジュールをソース�
     cd cphalcon/build
     sudo ./install
 
-php.iniに拡張モジュールを追加します。
+php.ini 에 확장 모듈을 추가합니다.
 
 .. code-block:: bash
 
     extension=phalcon.so
 
-最後にWEBサーバーを再起動します。
+마지막으로 WEB 서버를 다시 시작 합니다.
 
-Phalconは自動的にシステムのアーキテクチャを判定しますが、指定したアーキテクチャ向けにコンパイルすることを強制することができます。
+Phalcon 은 자동으로 시스템의 아키텍처를 판정하지만 지정된 아키텍처용으로 컴파일 하는 것을 강제 할 수 있습니다.
 
 .. code-block:: bash
 
@@ -91,7 +91,7 @@ Phalconは自動的にシステムのアーキテクチャを判定しますが�
 
 FreeBSD
 -------
-FreeBSDではportを利用することができます。インストールするには、次のシンプルなコマンドを叩くだけです。
+FreeBSD 에서 port 를 이용하실 수 있습니다. 설치 하려면 다음의 간단한 명령을 치는 것만으로 됩니다.
 
 .. code-block:: bash
 
@@ -104,9 +104,9 @@ or
     export CFLAGS="-O2 -fno-delete-null-pointer-checks"
     cd /usr/ports/www/phalcon && make install clean
 
-インストール ノート
+설치 노트
 ------------------
-各WEBサーバーにおけるインストールノート
+각 WEB 서버의 설치 노트
 
 .. toctree::
     :maxdepth: 1

@@ -1,26 +1,26 @@
-マイクロ ベンチマーク
-===============
-ベンチマークを実行した方法は？
-----------------------------------
-We created a "Hello World" benchmark seeking to identify the smallest load overhead of each framework. Similar to the benchmark made with Frameworks.
+마이크로 벤치마크 
+=================
+어떻게 벤치 마크를 수행했습니까? 
+---------------------------------- 
+우리는 각 프레임 워크의 가장 작은 로드 오버 헤드를 확인하고자 하는 "Hello World" 벤치 마크를 만들었습니다. 프레임 워크로 만든 벤치 마크와 유사합니다.
 
-Using a route for the HTTP method 'GET' we pass a parameter to a handler returning a "Hello $name" response.
+"Hello $name" 응답을 반환하는 핸들러에 매개 변수를 전달하는 'GET' HTTP 메서드에 대한 경로를 사용합니다. 
 
-どのような測定値を記録しましたか？
---------------------------------
-These were the measurements we record to identify the overall performance of each framework:
+무엇을 측정하여 기록됩니까? 
+-------------------------------- 
+이것은 우리가 각각의 프레임 워크의 전반적인 성능을 식별하는 기록을 측정했습니다: 
 
-* Requests per second
-* Time across all concurrent requests
-* Number of included PHP files on a single request (measured using function get_included_files_.
-* Memory Usage per request (measured using function memory_get_usage_.
+* 초당 요청 
+* 모든 동시 요청 시간 
+* get_included_files_ 기능을 사용하는 단일 요청에 포함된 PHP 파일의 수
+* memory_get_usage_ 기능을 사용하는 요청에 따른 메모리 사용률
 
-比較対象のフレームワーク
+참여 프레임 워크
 ----------------------
 * Slim_
 * Silex_
 
-結果
+결과
 -------
 Slim Framework
 ^^^^^^^^^^^^^^
@@ -270,9 +270,9 @@ The first graph shows how many requests per second each framework was able to ac
         <div id="mpr_div" style="width: 600px; height: 400px; position: relative; "><iframe name="Drawing_Frame_77939" id="Drawing_Frame_77939" width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div></div></div>
     </div>
 
-Conclusion
+결론
 ----------
-The compiled nature of Phalcon offers extraordinary performance that outperforms all other frameworks measured in these benchmarks.
+컴파일된 Phalcon 은 측정된 벤치 마크에서 모든 다른 프레임 워크를 능가하는 뛰어난 성능을 제공합니다.
 
 .. _get_included_files: http://www.php.net/manual/en/function.get-included-files.php
 .. _memory_get_usage: http://php.net/manual/en/function.memory-get-usage.php
