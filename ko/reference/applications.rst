@@ -1,18 +1,19 @@
-MVC アプリケーション
-================
-All the hard work behind orchestrating the operation of MVC in Phalcon is normally done by
-:doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>`. This component encapsulates all the complex
-operations required in the background, instantiating every component needed and integrating it with the
-project, to allow the MVC pattern to operate as desired.
+MVC 응용프로그램
+==================
+Phalcon에서 MVC기능을 뒤에서 통제하는 큰 작업은 보통 :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>` 에서 실행됩니다.
 
-シングル・モジュール アプリケーションとマルチ・モジュール アプリケーション
+이 컴포넌트에는 MVC 패턴이 원하는대로 작동하는데 필요한 모든
+컴포넌트를 인스턴스화하고 프로젝트와 통합하여 백그라운드에서 필수적인 모든 복잡한 작업이
+캡슐화되어있습니다.
+
+단일 또는 다중 모듈 응용프로그램
 -----------------------------------
-With this component you can run various types of MVC structures:
+이 컴포넌트는 MVC 구조의 여러 유형을 실행할 수 있습니다:
 
-シングル・モジュール
+단일모듈
 ^^^^^^^^^^^^^
-Single MVC applications consist of one module only. Namespaces can be used but are not necessary.
-An application like this would have the following file structure:
+단일 MVC 응용프로그램은 하나의 모듈로 구성되어 있습니다. 네임스페이스를 사용하지만 필요하진 않습니다.
+이런 응용프로그램은 다음과 같은 구조를 따라야합니다:
 
 .. code-block:: php
 
@@ -26,7 +27,8 @@ An application like this would have the following file structure:
             img/
             js/
 
-If namespaces are not used, the following bootstrap file could be used to orchestrate the MVC flow:
+네임스페이스를 사용하지 않는다면, 부트스트랩 파일은 다음과 같은 MVC 흐름으로
+사용될 수 있습니다:
 
 .. code-block:: php
 
@@ -65,7 +67,7 @@ If namespaces are not used, the following bootstrap file could be used to orches
         echo $e->getMessage();
     }
 
-If namespaces are used, the following bootstrap can be used:
+네임스페이스를 사용한다면, 부트스트랩 파일은 다음과 같이 사용될 수 있습니다:
 
 .. code-block:: php
 
@@ -114,9 +116,10 @@ If namespaces are used, the following bootstrap can be used:
     }
 
 
-マルチ・モジュール
+다중 모듈
 ^^^^^^^^^^^^
-A multi-module application uses the same document root for more than one module. In this case the following file structure can be used:
+다중 모듈 응용프로그램은 하나 이상의 모듈이 동일한 루트에 존재합니다. 이 경우 다음과
+같은 파일구조를 사용할 수 있습니다:
 
 .. code-block:: php
 
@@ -137,7 +140,8 @@ A multi-module application uses the same document root for more than one module.
         img/
         js/
 
-Each directory in apps/ have its own MVC structure. A Module.php is present to configure specific settings of each module like autoloaders or custom services:
+app/ 디렉토리내에 있는 각 디렉토리는 자신만의 MVC구조를
+가지고 있습니다. Module.php는 자동로더나 사용자정의 서비스와 같은 각 모듈만의 특정 설정을 구성할 수 있습니다:
 
 .. code-block:: php
 
@@ -194,7 +198,7 @@ Each directory in apps/ have its own MVC structure. A Module.php is present to c
 
     }
 
-A special bootstrap file is required to load the a multi-module MVC architecture:
+특정 부트스트랩 파일은 다중 모듈 MVC 아키텍쳐를 불러올 필요가 있습니다:
 
 .. code-block:: php
 
@@ -259,8 +263,8 @@ A special bootstrap file is required to load the a multi-module MVC architecture
         echo $e->getMessage();
     }
 
-If you want to maintain the module configuration in the bootstrap file you can use an anonymous function to register the
-module:
+부트스트랩 파일의 모듈설정을 유지하고 싶은 경우에는 모듈을 등록하는 익명의
+함수를 사용할 수 있습니다:
 
 .. code-block:: php
 
@@ -296,10 +300,9 @@ offering functions to set the module itself up. Each module class definition mus
 methods: registerAutoloaders() and registerServices(), they will be called by
 :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>` according to the module to be executed.
 
-デフォルト動作の理解
+기본 동작의 이해
 ----------------------------------
-If you've been following the :doc:`tutorial <tutorial>` or have generated the code using :doc:`Phalcon Devtools <tools>`,
-you may recognize the following bootstrap file:
+:doc:`tutorial <tutorial>` 을 사용하거나 :doc:`Phalcon Devtools <tools>` 로 코드를 생성하면, 다음과 같은 부트스트랩 파일을 볼 수 있습니다:
 
 .. code-block:: php
 
@@ -322,7 +325,7 @@ you may recognize the following bootstrap file:
         echo "Exception: ", $e->getMessage();
     }
 
-The core of all the work of the controller occurs when handle() is invoked:
+handle()가 호출될 때 컨트롤러의 모든 핵심작업이 실행됩니다:
 
 .. code-block:: php
 
@@ -330,9 +333,9 @@ The core of all the work of the controller occurs when handle() is invoked:
 
     echo $application->handle()->getContent();
 
-手動によるブートストラップ
+Manual bootstraping
 -------------------
-If you do not wish to use :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>`, the code above can be changed as follows:
+:doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>` 을 사용하지 않으려면, 다음과 같은 코드를 사용할 수 있습니다.
 
 .. code-block:: php
 
@@ -379,8 +382,7 @@ If you do not wish to use :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Ap
     // Print the response
     echo $response->getContent();
 
-The following replacement of :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>` lacks of a view component making
-it suitable for Rest APIs:
+뷰가 없는 Rest APIs 컴포넌트를 만들기 위해 :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>` 를 다음과 같이 대체할 수 있습니다:
 
 .. code-block:: php
 
@@ -461,7 +463,7 @@ Although the above implementations are a lot more verbose than the code needed w
 it offers an alternative in boostraping your application. Depending on your needs, you might want to have full control of what
 should be instantiated or not, or replace certain components with those of your own to extend the default functionality.
 
-アプリケーション・イベント
+Application Events
 ------------------
 :doc:`Phalcon\\Mvc\\Application <../api/Phalcon_Mvc_Application>` is able to send events to the :doc:`EventsManager <events>`
 (if it is present). Events are triggered using the type "application". The following events are supported:
@@ -499,6 +501,6 @@ The following example demonstrates how to attach listeners to this component:
         }
     );
 
-外部資料
+External Resources
 ------------------
 * `MVC examples on Github <https://github.com/phalcon/mvc>`_
